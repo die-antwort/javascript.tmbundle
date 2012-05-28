@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+require "net/http"
+
+word = ENV['TM_CURRENT_WORD']
+possible_paths = %W(/#{word}/ /jQuery.#{word}/)
+
+Net::HTTP.start("api.jquery.com") do |http|
+  path = possible_paths.detect{ |p| http.head(p).is_a? Net::HTTPSuccess } || "/?s=#{word}"
+  puts "&lt;meta http-equiv='Refresh' content='0;URL=http://api.jquery.com#{path}'&gt;"
+end
+</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>^h</string>
+	<key>name</key>
+	<string>jQuery-Documentation for Word / Selection</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>html</string>
+	<key>outputLocation</key>
+	<string>newWindow</string>
+	<key>scope</key>
+	<string>source.js</string>
+	<key>uuid</key>
+	<string>54DF94C4-A111-416E-BA70-86A2D493D899</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
