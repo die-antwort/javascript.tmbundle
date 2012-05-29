@@ -28,7 +28,7 @@ JavaScript::documentationForWord
 	<key>outputLocation</key>
 	<string>toolTip</string>
 	<key>scope</key>
-	<string>source.js</string>
+	<string>source.js, source.coffee</string>
 	<key>semanticClass</key>
 	<string>lookup.define.js</string>
 	<key>uuid</key>

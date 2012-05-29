@@ -32,7 +32,7 @@ end
 	<key>outputLocation</key>
 	<string>newWindow</string>
 	<key>scope</key>
-	<string>source.js</string>
+	<string>source.js,source.coffee</string>
 	<key>uuid</key>
 	<string>54DF94C4-A111-416E-BA70-86A2D493D899</string>
 	<key>version</key>
