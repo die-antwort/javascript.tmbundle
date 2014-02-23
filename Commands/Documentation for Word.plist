@@ -18,9 +18,9 @@ JavaScript::documentationForWord
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>^h</string>
+	<string>^H</string>
 	<key>name</key>
-	<string>Documentation for Word / Selection</string>
+	<string>Documentation for Word (JavaScript)</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
