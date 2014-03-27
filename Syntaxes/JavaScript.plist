@@ -103,7 +103,23 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b</string>
+			<string>\b0[xX]\h+\b</string>
+			<key>name</key>
+			<string>constant.numeric.hex.js</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?x)
+				(?&lt;!\w)									# Ensure word boundry
+				(?&gt;
+					(
+						(0|[1-9][0-9]*)(\.[0-9]*)?		# 0 or 1 or 1. or 1.0
+					  | \.[0-9]+						# .1
+					)
+					([eE][+-]?[0-9]+)?					# Exponent
+				)
+				(?!\w)									# Ensure word boundry
+			</string>
 			<key>name</key>
 			<string>constant.numeric.js</string>
 		</dict>
@@ -424,32 +440,43 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?&lt;=[=(:]|^|return|&amp;&amp;|\|\||!)\s*(/)(?![/*+{}?])</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.js</string>
-				</dict>
-			</dict>
+			<string>(?&lt;=[=(:,]|^|return|&amp;&amp;|\|\||!)\s*(?=/[^/*+{}?])</string>
+			<key>comment</key>
+			<string>Dont scope preceding whitespace as string.regex</string>
 			<key>end</key>
-			<string>(/)[igm]*</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.js</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.regexp.js</string>
+			<string>(?&lt;=[/igm])</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>source.js.regexp</string>
+					<key>begin</key>
+					<string>/</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.js</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(/)[igm]*</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.js</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>string.regexp.js</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js.regexp</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -458,18 +485,6 @@
 			<string>\;</string>
 			<key>name</key>
 			<string>punctuation.terminator.statement.js</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>,[ |\t]*</string>
-			<key>name</key>
-			<string>meta.delimiter.object.comma.js</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\.</string>
-			<key>name</key>
-			<string>meta.delimiter.method.period.js</string>
 		</dict>
 		<dict>
 			<key>captures</key>
